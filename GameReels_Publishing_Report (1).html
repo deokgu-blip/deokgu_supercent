@@ -1,0 +1,1406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameReels GA4 이벤트 현황</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAF7F1;
+    --bg-alt: #F4EFE4;
+    --card: #FFFFFF;
+    --ink: #1F2937;
+    --ink-soft: #4B5563;
+    --ink-mute: #6B7280;
+    --line: #E8E2D2;
+    --line-soft: #F0EBDD;
+    --accent: #2563A8;
+    --accent-soft: #DCE8F4;
+    --accent-deep: #1A3D6B;
+    --warm: #C97B4D;
+    --warm-soft: #FBEFE4;
+    --green: #2E7D5B;
+    --green-soft: #DEF0E5;
+    --gray-soft: #F5F2EA;
+    --shadow: 0 1px 3px rgba(31, 41, 55, 0.04), 0 8px 24px rgba(31, 41, 55, 0.04);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.65;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum" 1;
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 56px 120px;
+  }
+
+  /* ===== HEADER ===== */
+  .doc-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 56px;
+    font-size: 13px;
+    color: var(--ink-mute);
+    letter-spacing: 0.02em;
+  }
+
+  .doc-meta-left {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .doc-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+  }
+
+  .hero {
+    margin-bottom: 80px;
+  }
+
+  .hero-eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.16em;
+    margin-bottom: 20px;
+  }
+
+  .hero-title {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  .hero-title .accent {
+    color: var(--accent);
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 720px;
+    line-height: 1.75;
+  }
+
+  /* ===== SUMMARY STRIP ===== */
+  .summary {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 96px;
+  }
+
+  .summary-item {
+    background: var(--card);
+    padding: 28px 24px;
+  }
+
+  .summary-label {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .summary-value {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .summary-sub {
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    margin-bottom: 100px;
+  }
+
+  .sec-head {
+    margin-bottom: 40px;
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .sec-num {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+  }
+
+  .sec-title {
+    font-size: 32px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .sec-desc {
+    margin-left: auto;
+    font-size: 14px;
+    color: var(--ink-mute);
+    max-width: 320px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .sub-head {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 36px 0 16px;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .sub-head::before {
+    content: "";
+    width: 4px;
+    height: 18px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  /* ===== EVENT GRID ===== */
+  .event-cats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .cat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 24px 28px;
+    transition: all 0.2s ease;
+  }
+
+  .cat:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+  }
+
+  .cat-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px dashed var(--line);
+  }
+
+  .cat-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .cat-count {
+    font-size: 11px;
+    background: var(--gray-soft);
+    color: var(--ink-soft);
+    padding: 3px 10px;
+    border-radius: 100px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  .cat-events {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .ev-pill {
+    display: inline-block;
+    padding: 5px 11px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line-soft);
+    color: var(--ink-soft);
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 6px;
+    font-family: 'Noto Sans KR', monospace;
+    letter-spacing: -0.01em;
+  }
+
+  .ev-pill.new {
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+
+  .ev-pill.new::before {
+    content: "NEW";
+    font-size: 9px;
+    font-weight: 700;
+    margin-right: 6px;
+    background: var(--accent);
+    color: white;
+    padding: 1px 5px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ===== PARAM TABLE ===== */
+  .param-block {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  .param-head {
+    background: var(--bg-alt);
+    padding: 18px 28px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .param-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .param-trigger {
+    font-size: 12px;
+    color: var(--ink-soft);
+    text-align: right;
+    line-height: 1.5;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  table th {
+    background: var(--card);
+    padding: 12px 28px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--ink-mute);
+    border-bottom: 1px solid var(--line);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  table td {
+    padding: 12px 28px;
+    border-bottom: 1px solid var(--line-soft);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  table tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  table tbody tr:hover {
+    background: var(--bg-alt);
+  }
+
+  .param-key {
+    font-weight: 600;
+    color: var(--accent-deep);
+    white-space: nowrap;
+    font-size: 12.5px;
+  }
+
+  /* ===== CUSTOM REG ===== */
+  .reg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .reg-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .reg-card-head {
+    margin-bottom: 24px;
+  }
+
+  .reg-card-label {
+    font-size: 12px;
+    color: var(--ink-mute);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .reg-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 4px;
+  }
+
+  .reg-bar {
+    height: 8px;
+    background: var(--gray-soft);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    position: relative;
+  }
+
+  .reg-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-deep));
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .reg-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 13px;
+  }
+
+  .reg-stat-current {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+
+  .reg-stat-max {
+    color: var(--ink-mute);
+    font-weight: 500;
+    font-size: 14px;
+  }
+
+  .reg-note {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--line);
+    font-size: 12px;
+    color: var(--ink-mute);
+    line-height: 1.6;
+  }
+
+  /* ===== KPI ===== */
+  .kpi-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .kpi {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.2s ease;
+  }
+
+  .kpi:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+  }
+
+  .kpi-cat {
+    display: inline-block;
+    padding: 3px 10px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 14px;
+  }
+
+  .kpi-name {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .kpi-method {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    padding: 12px 14px;
+    background: var(--bg-alt);
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+  }
+
+  .kpi-method-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent-deep);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+  }
+
+  /* ===== GOAL ===== */
+  .goal-hero {
+    background: linear-gradient(135deg, var(--accent-deep) 0%, var(--accent) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 56px 56px;
+    margin-bottom: 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .goal-hero::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+  }
+
+  .goal-hero::after {
+    content: "";
+    position: absolute;
+    bottom: -50px;
+    left: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 50%;
+  }
+
+  .goal-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    opacity: 0.7;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .goal-quote {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: -0.02em;
+    position: relative;
+    max-width: 800px;
+  }
+
+  .goal-quote .hl {
+    background: linear-gradient(180deg, transparent 60%, rgba(255, 255, 255, 0.18) 60%);
+    padding: 0 4px;
+  }
+
+  .goal-attr {
+    margin-top: 28px;
+    font-size: 13px;
+    opacity: 0.7;
+    letter-spacing: 0.04em;
+    position: relative;
+  }
+
+  .goal-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .step {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 32px 28px;
+    position: relative;
+  }
+
+  .step-num {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+
+  .step-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .step-desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  .candidate-block {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 32px 36px;
+  }
+
+  .candidate-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+
+  .candidate-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .candidate {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 14px 16px;
+    background: var(--bg-alt);
+    border-radius: 8px;
+  }
+
+  .candidate-bullet {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .candidate-text {
+    font-size: 13.5px;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.5;
+    padding-top: 3px;
+  }
+
+  /* ===== FOOTER ===== */
+  .doc-foot {
+    margin-top: 80px;
+    padding-top: 40px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  .doc-foot-brand {
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 14px;
+    letter-spacing: -0.01em;
+  }
+
+  /* ===== UTILS ===== */
+  .badge-new {
+    display: inline-block;
+    background: var(--warm);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .note {
+    background: var(--warm-soft);
+    border: 1px solid #F0D9C2;
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin-top: 24px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .note-tag {
+    flex-shrink: 0;
+    background: var(--warm);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+  }
+
+  /* Responsive */
+  @media (max-width: 880px) {
+    .wrap {
+      padding: 48px 24px 80px;
+    }
+    .hero-title {
+      font-size: 40px;
+    }
+    .summary {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .event-cats,
+    .reg-grid,
+    .kpi-list,
+    .goal-steps,
+    .candidate-list {
+      grid-template-columns: 1fr;
+    }
+    .sec-head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .sec-desc {
+      margin-left: 0;
+      text-align: left;
+    }
+    .goal-hero {
+      padding: 40px 28px;
+    }
+    .goal-quote {
+      font-size: 22px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- META -->
+  <div class="doc-meta">
+    <div class="doc-meta-left">
+      <span class="doc-tag">PUBLISHING TEAM</span>
+      <span>GameReels · Soft Launch</span>
+    </div>
+    <span>2026.04.26</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">GA4 EVENT TRACKING REPORT</div>
+    <h1 class="hero-title">GameReels<br><span class="accent">이벤트 현황</span> 및 분석 계획</h1>
+    <p class="hero-desc">
+      GameReels 소프트런칭 빌드에 적용된 GA4 이벤트, 파라미터, 커스텀 등록 현황을 정리한 문서입니다. 현재 확인 가능한 지표와 퍼블리싱팀 가이드 기반의 분석 목적을 함께 담아 공유합니다.
+    </p>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="summary-item">
+      <div class="summary-label">활성 이벤트</div>
+      <div class="summary-value">26</div>
+      <div class="summary-sub">신규 추가 2건 포함</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-label">맞춤 측정기준</div>
+      <div class="summary-value">40<span style="font-size:18px;color:var(--ink-mute);font-weight:500;"> / 50</span></div>
+      <div class="summary-sub">디멘션 슬롯 80% 사용</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-label">맞춤 측정항목</div>
+      <div class="summary-value">42<span style="font-size:18px;color:var(--ink-mute);font-weight:500;"> / 50</span></div>
+      <div class="summary-sub">메트릭 슬롯 84% 사용</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-label">사용자 속성</div>
+      <div class="summary-value">13<span style="font-size:18px;color:var(--ink-mute);font-weight:500;"> / 25</span></div>
+      <div class="summary-sub">UA·코호트 추적용</div>
+    </div>
+  </div>
+
+  <!-- ============ 01 이벤트 현황 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">이벤트 현황</h2>
+      <p class="sec-desc">카테고리별 활성 이벤트. NEW 표기는 AHA 분석 도입을 위한 신규 추가 이벤트입니다.</p>
+    </div>
+
+    <div class="event-cats">
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">미니게임</span>
+          <span class="cat-count">6 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">minigame_view</span>
+          <span class="ev-pill">minigame_start</span>
+          <span class="ev-pill">minigame_end</span>
+          <span class="ev-pill">minigame_load_start</span>
+          <span class="ev-pill">minigame_load_complete</span>
+          <span class="ev-pill">minigame_replay</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">피드</span>
+          <span class="cat-count">2 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">episode_scene_enter</span>
+          <span class="ev-pill">feed_swipe</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">세션</span>
+          <span class="cat-count">2 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">session_summary</span>
+          <span class="ev-pill">session_end_reason</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">인터랙션·검색</span>
+          <span class="cat-count">3 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">click_reaction_toggle</span>
+          <span class="ev-pill">search_text</span>
+          <span class="ev-pill">search_preto_type_genre</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">진행도</span>
+          <span class="cat-count">3 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">game_progress_view</span>
+          <span class="ev-pill">game_progress_update</span>
+          <span class="ev-pill">game_progress_complete</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">Reward·코인</span>
+          <span class="cat-count">6 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">reward_page_view</span>
+          <span class="ev-pill">checkin_click</span>
+          <span class="ev-pill">mission_go_click</span>
+          <span class="ev-pill">mission_complete</span>
+          <span class="ev-pill">mission_claim_click</span>
+          <span class="ev-pill">coin_earn</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">UA·딥링크</span>
+          <span class="cat-count">1 EVENT</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">deep_link_open</span>
+        </div>
+      </div>
+
+      <div class="cat">
+        <div class="cat-head">
+          <span class="cat-name">AB 테스트</span>
+          <span class="cat-count">1 EVENT</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill">experiment_exposure</span>
+        </div>
+      </div>
+
+      <div class="cat" style="grid-column: 1 / -1;">
+        <div class="cat-head">
+          <span class="cat-name">AHA·리텐션 분석 <span class="badge-new">신규</span></span>
+          <span class="cat-count">2 EVENTS</span>
+        </div>
+        <div class="cat-events">
+          <span class="ev-pill new">first_session_aha_candidate</span>
+          <span class="ev-pill new">app_open</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 02 핵심 파라미터 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">핵심 파라미터 구성</h2>
+      <p class="sec-desc">분석 활용도가 높은 핵심 이벤트의 파라미터 정의입니다. 전체 이벤트 정의는 별도 GA4 이벤트 문서를 참조하세요.</p>
+    </div>
+
+    <h3 class="sub-head">전 이벤트 공통</h3>
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">공통 파라미터</div>
+        <div class="param-trigger">모든 이벤트에 자동 부착</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">session_id</td><td>GameReels 자체 발급 세션 UUID. 백그라운드 15분 경과 시 새 세션 발급</td></tr>
+          <tr><td class="param-key">user_id</td><td>유저 고유 식별자 UID</td></tr>
+          <tr><td class="param-key">session_index <span class="badge-new">신규</span></td><td>해당 유저 기준 N번째 세션. 클라이언트 로컬 카운터로 관리. 첫 세션 분석의 전제 조건</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">미니게임 핵심 이벤트</h3>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">minigame_view</div>
+        <div class="param-trigger">피드에 미니게임이 300ms 이상 노출 시</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">mini_game_id / game_id</td><td>미니게임·게임 타이틀 식별자</td></tr>
+          <tr><td class="param-key">feed_mode</td><td>피드 모드 (for_you / episode)</td></tr>
+          <tr><td class="param-key">historical_repeat / session_repeat</td><td>과거·현재 세션의 반복 노출 여부</td></tr>
+          <tr><td class="param-key">game_play_order / game_unique_play_order</td><td>해당 게임의 N번째 플레이, 중복 제외 N번째</td></tr>
+          <tr><td class="param-key">prev_end_result / prev_mini_game_id</td><td>직전 종료 에피소드의 결과·ID</td></tr>
+          <tr><td class="param-key">genre <span class="badge-new">신규</span></td><td>대표 장르 식별자 (puzzle / arcade 등)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">minigame_start</div>
+        <div class="param-trigger">Play 버튼 클릭으로 플레이씬 진입 시</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">mini_game_id / game_id</td><td>미니게임·게임 타이틀 식별자</td></tr>
+          <tr><td class="param-key">feed_mode</td><td>피드 모드</td></tr>
+          <tr><td class="param-key">start_latency_ms</td><td>Play 클릭 후 진입까지 소요 시간</td></tr>
+          <tr><td class="param-key">is_consecutive_play</td><td>직전 클리어 후 60초 이내 즉시 플레이 여부</td></tr>
+          <tr><td class="param-key">genre <span class="badge-new">신규</span></td><td>대표 장르 식별자</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">minigame_end</div>
+        <div class="param-trigger">미니게임 플레이가 종료되었을 때</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">result</td><td>종료 결과 (clear / fail / quit / error)</td></tr>
+          <tr><td class="param-key">end_reason</td><td>종료 사유 (swipe / user_back / exit_app / error)</td></tr>
+          <tr><td class="param-key">play_time_ms</td><td>플레이 시간</td></tr>
+          <tr><td class="param-key">is_first_clear <span class="badge-new">신규</span></td><td>해당 유저의 첫 클리어 여부</td></tr>
+          <tr><td class="param-key">genre <span class="badge-new">신규</span></td><td>대표 장르 식별자</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">세션·피드</h3>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">session_summary</div>
+        <div class="param-trigger">백그라운드 전환 또는 첫 화면 진입 시 누적 요약 발송</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">total_view_count / games_started</td><td>세션 동안 노출·플레이 수</td></tr>
+          <tr><td class="param-key">session_duration</td><td>세션 시작부터 발송 시점까지 총 시간</td></tr>
+          <tr><td class="param-key">historical_repeat_count / session_repeat_count</td><td>과거·현재 세션 반복 노출 횟수</td></tr>
+          <tr><td class="param-key">uncleared_repeat_count</td><td>미클리어 콘텐츠 재노출 횟수</td></tr>
+          <tr><td class="param-key">session_first_mini_game_id / session_first_game_id</td><td>세션 첫 노출 미니게임·게임</td></tr>
+          <tr><td class="param-key">unique_genre_count <span class="badge-new">신규</span></td><td>중복 제외 장르 수</td></tr>
+          <tr><td class="param-key">total_swipe_count / total_clear_count <span class="badge-new">신규</span></td><td>누적 스와이프·클리어 수</td></tr>
+          <tr><td class="param-key">had_interaction <span class="badge-new">신규</span></td><td>좋아요·즐겨찾기·공유 발생 여부</td></tr>
+          <tr><td class="param-key">entry_source <span class="badge-new">신규</span></td><td>세션 진입 경로</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">feed_swipe</div>
+        <div class="param-trigger">피드에서 다음·이전 카드 이동 확정 시</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">direction / feed_mode</td><td>스와이프 방향, 피드 모드</td></tr>
+          <tr><td class="param-key">session_swipe_index</td><td>세션 내 스와이프 누적 횟수</td></tr>
+          <tr><td class="param-key">from_minigame_id / to_minigame_id</td><td>전후 미니게임 ID</td></tr>
+          <tr><td class="param-key">from_genre / to_genre <span class="badge-new">신규</span></td><td>전후 장르</td></tr>
+          <tr><td class="param-key">is_after_refresh <span class="badge-new">신규</span></td><td>새로고침 후 첫 스와이프 여부</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">신규 분석 이벤트</h3>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">first_session_aha_candidate <span class="badge-new">신규</span></div>
+        <div class="param-trigger">첫 세션(session_index = 1) 종료 시 1회 발송</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:35%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">first_session_duration_sec</td><td>첫 세션 총 체류 시간(초)</td></tr>
+          <tr><td class="param-key">played_content_count</td><td>첫 세션 미니게임 플레이 시도 수</td></tr>
+          <tr><td class="param-key">played_clear_count</td><td>첫 세션 클리어 미니게임 수</td></tr>
+          <tr><td class="param-key">unique_minigame_count</td><td>중복 제외 플레이 미니게임 수</td></tr>
+          <tr><td class="param-key">unique_game_count</td><td>중복 제외 접한 게임 타이틀 수</td></tr>
+          <tr><td class="param-key">unique_genre_count</td><td>중복 제외 접한 장르 수</td></tr>
+          <tr><td class="param-key">max_play_duration_ms</td><td>단일 미니게임 최장 플레이 시간</td></tr>
+          <tr><td class="param-key">total_swipe_count</td><td>첫 세션 누적 스와이프 횟수</td></tr>
+          <tr><td class="param-key">had_interaction</td><td>좋아요·즐겨찾기·공유 발생 여부</td></tr>
+          <tr><td class="param-key">had_episode_feed_enter</td><td>에피소드 피드 진입 여부</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">app_open <span class="badge-new">신규</span></div>
+        <div class="param-trigger">앱 포그라운드 진입 시 (콜드 스타트·백그라운드 복귀 모두 포함)</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">days_since_install</td><td>설치일로부터 경과 일수</td></tr>
+          <tr><td class="param-key">is_d1_return / is_d3_return / is_d7_return</td><td>각 리텐션 코호트 해당 여부</td></tr>
+          <tr><td class="param-key">is_cold_start</td><td>콜드 스타트 여부</td></tr>
+          <tr><td class="param-key">entry_source</td><td>진입 경로 (launcher / push / deeplink / app_open_ad)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="param-block">
+      <div class="param-head">
+        <div class="param-name">deep_link_open</div>
+        <div class="param-trigger">딥링크로 앱 진입 시 (UA 광고·공유 링크 등)</div>
+      </div>
+      <table>
+        <thead>
+          <tr><th style="width:30%">파라미터</th><th>설명</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">utm_source / utm_campaign / utm_content</td><td>유입 매체·캠페인·소재 식별자</td></tr>
+          <tr><td class="param-key">deep_link_destination</td><td>딥링크 도착 화면</td></tr>
+          <tr><td class="param-key">game_id / mini_game_id</td><td>특정 콘텐츠 딥링크 시 기록</td></tr>
+          <tr><td class="param-key">is_first_open</td><td>설치 후 첫 실행 여부</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
+
+  <!-- ============ 03 커스텀 등록 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">커스텀 등록 현황</h2>
+      <p class="sec-desc">GA4 콘솔에서 직접 그룹핑·집계 분석이 가능한 항목입니다. 미등록 파라미터는 BigQuery 원자료에서 조회 가능합니다.</p>
+    </div>
+
+    <div class="reg-grid">
+      <div class="reg-card">
+        <div class="reg-card-head">
+          <div class="reg-card-label">EVENT-SCOPED</div>
+          <div class="reg-card-title">맞춤 측정기준</div>
+        </div>
+        <div class="reg-bar"><div class="reg-bar-fill" style="width: 80%;"></div></div>
+        <div class="reg-stat">
+          <div><span class="reg-stat-current">40</span><span class="reg-stat-max"> / 50</span></div>
+          <div style="font-size:12px;color:var(--ink-mute);">+ 9 신규</div>
+        </div>
+        <div class="reg-note">
+          그룹핑·필터링용 문자열·boolean 디멘션. 콘솔 자유 형식·세그먼트 분석에 활용.
+        </div>
+      </div>
+
+      <div class="reg-card">
+        <div class="reg-card-head">
+          <div class="reg-card-label">EVENT-SCOPED</div>
+          <div class="reg-card-title">맞춤 측정항목</div>
+        </div>
+        <div class="reg-bar"><div class="reg-bar-fill" style="width: 84%;"></div></div>
+        <div class="reg-stat">
+          <div><span class="reg-stat-current">42</span><span class="reg-stat-max"> / 50</span></div>
+          <div style="font-size:12px;color:var(--ink-mute);">+ 10 신규</div>
+        </div>
+        <div class="reg-note">
+          평균·합계·최댓값 등 숫자 집계용 메트릭. 코호트별 메트릭 비교에 활용.
+        </div>
+      </div>
+
+      <div class="reg-card">
+        <div class="reg-card-head">
+          <div class="reg-card-label">USER-SCOPED</div>
+          <div class="reg-card-title">사용자 속성</div>
+        </div>
+        <div class="reg-bar"><div class="reg-bar-fill" style="width: 52%;"></div></div>
+        <div class="reg-stat">
+          <div><span class="reg-stat-current">13</span><span class="reg-stat-max"> / 25</span></div>
+          <div style="font-size:12px;color:var(--ink-mute);">UA 추적용</div>
+        </div>
+        <div class="reg-note">
+          유저 영구 태그. UA 캠페인 출신·첫 진입 콘텐츠·딥링크 정보 추적.
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub-head">신규 등록 측정기준</h3>
+    <div class="param-block">
+      <table>
+        <thead>
+          <tr><th style="width:25%">디멘션</th><th style="width:35%">발생 이벤트</th><th>등록 사유</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">session_index</td><td>전 이벤트 공통</td><td>첫 세션 코호트 분리</td></tr>
+          <tr><td class="param-key">genre</td><td>minigame_view·start·end, episode_scene_enter</td><td>장르별 코호트 비교 (AHA 핵심 변수)</td></tr>
+          <tr><td class="param-key">entry_source</td><td>app_open, session_summary</td><td>진입 경로별 행동 비교</td></tr>
+          <tr><td class="param-key">is_d7_return</td><td>app_open</td><td>D7 리텐션 코호트 분리</td></tr>
+          <tr><td class="param-key">had_interaction</td><td>first_session_aha_candidate, session_summary</td><td>인터랙션 발생 코호트 비교</td></tr>
+          <tr><td class="param-key">had_episode_feed_enter</td><td>first_session_aha_candidate</td><td>탐색 깊이 코호트 비교</td></tr>
+          <tr><td class="param-key">is_after_refresh</td><td>feed_swipe</td><td>새로고침 후 행동 분기 분석</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub-head">신규 등록 측정항목</h3>
+    <div class="param-block">
+      <table>
+        <thead>
+          <tr><th style="width:35%">메트릭</th><th style="width:35%">발생 이벤트</th><th>의미</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="param-key">first_session_duration_sec</td><td>first_session_aha_candidate</td><td>첫 세션 체류 시간</td></tr>
+          <tr><td class="param-key">played_content_count</td><td>first_session_aha_candidate</td><td>첫 세션 플레이 시도 수</td></tr>
+          <tr><td class="param-key">played_clear_count</td><td>first_session_aha_candidate</td><td>첫 세션 클리어 수</td></tr>
+          <tr><td class="param-key">unique_minigame_count</td><td>first_session_aha_candidate</td><td>중복 제외 미니게임 수</td></tr>
+          <tr><td class="param-key">unique_game_count</td><td>first_session_aha_candidate</td><td>중복 제외 게임 수</td></tr>
+          <tr><td class="param-key">unique_genre_count</td><td>first_session_aha_candidate, session_summary</td><td>중복 제외 장르 수</td></tr>
+          <tr><td class="param-key">max_play_duration_ms</td><td>first_session_aha_candidate</td><td>단일 미니게임 최장 플레이</td></tr>
+          <tr><td class="param-key">total_swipe_count</td><td>first_session_aha_candidate, session_summary</td><td>누적 스와이프</td></tr>
+          <tr><td class="param-key">total_clear_count</td><td>session_summary</td><td>세션 클리어 수</td></tr>
+          <tr><td class="param-key">days_since_install</td><td>app_open</td><td>설치 후 경과 일수</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note">
+      <span class="note-tag">NOTE</span>
+      <div>커스텀 디멘션·메트릭으로 등록되지 않은 파라미터(예: from_minigame_id, view_duration_ms 등)는 BigQuery 원자료에 그대로 저장되어 SQL로 조회 가능합니다. GA4 콘솔의 슬롯 한도 절약을 위해 분석 빈도가 높은 항목만 등록한 결과입니다.</div>
+    </div>
+  </section>
+
+  <!-- ============ 04 확인 가능 지표 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">확인 가능 지표</h2>
+      <p class="sec-desc">현재 등록 상태를 기준으로 GA4 콘솔에서 즉시 확인 가능한 분석 지표 목록입니다.</p>
+    </div>
+
+    <div class="kpi-list">
+
+      <div class="kpi">
+        <div class="kpi-cat">콘텐츠 소비</div>
+        <div class="kpi-name">미니게임 노출·플레이·클리어 분포</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          탐색 → 자유 형식. genre·feed_mode 디멘션으로 세분화. result·end_reason 메트릭으로 클리어율 도출.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">참여도</div>
+        <div class="kpi-name">세션당 행동 요약</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          session_summary 이벤트 + total_view_count·session_duration·games_started 메트릭. entry_source별 비교 가능.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">반복 노출 분석</div>
+        <div class="kpi-name">과거·현재 세션 중복 노출 비율</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          historical_repeat_count·session_repeat_count·uncleared_repeat_count 메트릭으로 콘텐츠 풀 다양성 점검.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">진행도</div>
+        <div class="kpi-name">게임 타이틀 완주율</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          game_progress_view → update → complete 퍼널 분석. progress_percent_after 메트릭으로 진행 단계별 이탈 확인.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">미션·보상</div>
+        <div class="kpi-name">미션 클리어율·보상 수령률</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          mission_go_click → complete → claim 단계별 전환율. mission_type별 비교.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">출석</div>
+        <div class="kpi-name">출석 참여율·연속 출석 분포</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          checkin_click 이벤트 + streak_day 메트릭으로 DAU 대비 참여율 도출.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">검색</div>
+        <div class="kpi-name">검색량·검색어 결과 분포</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          search_text 이벤트 + result_count 메트릭. 무결과 검색 추천 클릭은 search_preto_type_genre로 추적.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">인터랙션</div>
+        <div class="kpi-name">좋아요·즐겨찾기·공유 빈도</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          click_reaction_toggle 이벤트 + reaction_type 디멘션. click_scene으로 결과창·플레이전 구분.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">UA 캠페인</div>
+        <div class="kpi-name">유입 매체·캠페인별 행동 비교</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          first_utm_source / first_utm_campaign 사용자 속성으로 코호트 분리. 매체별 D1·D7·LTV 비교.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">AB 테스트</div>
+        <div class="kpi-name">실험 그룹별 행동 비교</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          experiment_exposure 디멘션으로 A·B·C·D·E 그룹 세분화. 핵심 메트릭 그룹별 비교.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">리텐션 · 신규</div>
+        <div class="kpi-name">D1·D3·D7 리텐션 코호트 자동 산출</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          app_open 이벤트 + is_d7_return 디멘션. 코호트 데이터 탐색에서 코호트별 잔존율 시각화.
+        </div>
+      </div>
+
+      <div class="kpi">
+        <div class="kpi-cat">AHA 분석 · 신규</div>
+        <div class="kpi-name">첫 세션 행동 코호트 비교</div>
+        <div class="kpi-method">
+          <span class="kpi-method-label">METHOD</span>
+          first_session_aha_candidate 이벤트 + 10개 메트릭 평균 비교. D7 Retained vs Churn 잠재고객 세그먼트.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ 05 분석 목적 ============ -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">분석 목적</h2>
+      <p class="sec-desc">퍼블리싱팀 가이드 기반의 AHA Moment 분석을 핵심 목표로 합니다. 데이터 누적 후 정의 도출 예정.</p>
+    </div>
+
+    <div class="goal-hero">
+      <div class="goal-eyebrow">CORE OBJECTIVE</div>
+      <div class="goal-quote">
+        <span class="hl">"D7 리텐션 유저의 X%가 첫 세션에서 Y 행동을 했다"</span>를 데이터 기반으로 정의하여 AHA Moment를 도출하고, 온보딩과 추천 로직의 핵심 기준으로 활용합니다.
+      </div>
+      <div class="goal-attr">— 퍼블리싱팀 분석 프레임워크</div>
+    </div>
+
+    <h3 class="sub-head">분석 단계</h3>
+    <div class="goal-steps">
+      <div class="step">
+        <div class="step-num">STEP 01</div>
+        <div class="step-title">코호트 분리</div>
+        <div class="step-desc">app_open + is_d7_return 기준으로 D7 Retained 유저와 Churn 유저를 분리하여 비교 모집단 정의.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 02</div>
+        <div class="step-title">첫 세션 행동 비교</div>
+        <div class="step-desc">두 코호트 간 평균 플레이 수·체류 시간·장르 다양성·스크롤·인터랙션 격차 분석. AHA 후보 변수 식별.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">STEP 03</div>
+        <div class="step-title">임계값 도출</div>
+        <div class="step-desc">조건별 D7 리텐션율 비교로 의미 있는 임계값 산출. AHA 정의 문장 작성 및 액션 도출.</div>
+      </div>
+    </div>
+
+    <h3 class="sub-head">AHA 후보 가설</h3>
+    <div class="candidate-block">
+      <div class="candidate-title">소프트런칭 데이터 누적 후 검증할 후보 패턴</div>
+      <div class="candidate-list">
+        <div class="candidate">
+          <div class="candidate-bullet">01</div>
+          <div class="candidate-text">첫 세션에서 3개 이상 콘텐츠 소비</div>
+        </div>
+        <div class="candidate">
+          <div class="candidate-bullet">02</div>
+          <div class="candidate-text">첫 세션에서 장르 2개 이상 경험</div>
+        </div>
+        <div class="candidate">
+          <div class="candidate-bullet">03</div>
+          <div class="candidate-text">첫 세션에서 5개 이상 스크롤</div>
+        </div>
+        <div class="candidate">
+          <div class="candidate-bullet">04</div>
+          <div class="candidate-text">첫 3분 내 취향 적중 콘텐츠 경험</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FOOT -->
+  <div class="doc-foot">
+    <div class="doc-foot-brand">GameReels</div>
+    <div>Document for Publishing Team · 2026.04.26</div>
+  </div>
+
+</div>
+
+</body>
+</html>
